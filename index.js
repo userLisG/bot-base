@@ -1,7 +1,10 @@
-const config_token = require('./modules/configs')
 // Livrarias
 const Discord = require("discord.js");
+const path = require('path')
 const { CommandHandler } = require('djs-commander');
+
+// Diretório
+const config_token = require('./modules/configs/informations_to_bot.json')
 
 // DJS 
 const client = new Discord.Client({
@@ -22,8 +25,8 @@ new CommandHandler({
     commandsPath: path.join(__dirname, './modules/commands')
 });
 
-client.login(config_token.disc_bot_token).then(() => {
+client.login(config_token.BOT_CONFIG.TOKEN).then(() => {
     return;
-}).catch((err) => {
-    console.log('[ERRO]: O TOKEN está inválido! Vá nas configurações e mude o token no disc_configurations!');
+}).catch(() => {
+    console.log('[ERRO]: O TOKEN está inválido! Vá nas configurações e mude o token!');
 })
